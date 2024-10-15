@@ -1,0 +1,166 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Login</title>
+    <style>
+        /* Configuración básica para eliminar márgenes y hacer que la página use todo el alto de la ventana */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            /* Imagen de fondo para toda la página */
+            background: url("{{ url_for('static', filename='images/image2.png') }}") no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Estilo para el contenedor que muestra el nombre de la compañía y el logo */
+        .company-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            color: white; /* Color del texto del nombre de la compañía */
+        }
+
+        /* Estilo del logo de la compañía */
+        .company-header img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px; /* Espaciado entre el logo y el texto del nombre */
+        }
+
+        /* Estilo para el nombre de la compañía */
+        .company-header h1 {
+            font-size: 5em; /* Tamaño de la fuente del nombre de la compañía */
+            margin: 0;
+        }
+
+        /* Estilo para el contenedor del formulario de inicio de sesión */
+        .login-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            text-align: center;
+            color: rgb(12, 14, 13); /* Color del texto */
+        }
+        .login-container h1{
+            color: rgb(252, 252, 252); /* Color del texto */
+        }
+        /* Estilo del encabezado principal (título) de la página de inicio de sesión */
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px; /* Margen inferior para dar espacio antes del formulario */
+        }
+
+        /* Estilo para el contenedor que contiene los botones de inicio de sesión con redes sociales */
+        .button-container {
+            margin-top: 20px;
+            display: flex; /* Usa Flexbox para organizar los botones */
+            flex-direction: row; /* Alinea los botones horizontalmente */
+            justify-content: center; /* Centra los botones horizontalmente */
+            gap: 20px; /* Espacio horizontal entre los botones */
+        }
+
+        /* Estilo general para los botones */
+        button {
+            padding: 10px 20px;
+            margin: 10px 0; /* Espaciado vertical entre el formulario y los botones */
+            border: none; /* Sin borde para los botones */
+            background-color: #4CAF50; /* Color de fondo del botón */
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer; /* Muestra el cursor de "manito" */
+            border-radius: 10px; /* Bordes redondeados */
+            width: 250px; /* Ancho de los botones */
+        }
+
+        /* Cambio de color cuando se pasa el ratón sobre los botones */
+        button:hover {
+            background-color: #45a049; /* Color más oscuro al pasar el cursor */
+        }
+
+        /* Enlaces adicionales como "Registrarse" y "Olvidaste tu contraseña" */
+        .extra-links {
+            margin-top: 10px;
+            color: white; /* Color del texto de los enlaces */
+        }
+
+        /* Estilo para los enlaces dentro del contenedor extra-links */
+        .extra-links a {
+            color: rgb(255, 255, 255); /* Color del enlace */
+            text-decoration: none; /* Elimina el subrayado */
+            font-size: 1em; /* Tamaño de la fuente */
+        }
+
+        /* Subraya los enlaces al pasar el cursor por encima */
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo para los botones con imagen (Facebook y Google) */
+        .social-button {
+            background-color: transparent; /* Sin color de fondo */
+            border: none; /* Sin borde */
+            cursor: pointer; /* Muestra el cursor de "manito" */
+        }
+
+        /* Estilo para las imágenes dentro de los botones sociales */
+        .social-button img {
+            width: 50px; /* Tamaño de la imagen (ícono) */
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor para el nombre de la compañía e ícono -->
+    <div class="company-header">
+        <!-- Muestra el logo de la compañía. Asegúrate de tener el archivo logo.png en la carpeta 'static/images' -->
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Company Logo">
+        <h1>Circuito_integrado</h1> <!-- Nombre de la compañía -->
+    </div>
+
+    <div class="login-container">
+        <h1>Bienvenido estudiante</h1> <!-- Título de la página -->
+
+        <!-- Formulario de inicio de sesión para ingresar username/email y contraseña -->
+        <form action="/login" method="POST">
+            <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+            <input type="text" name="username_or_email" placeholder="Nombre de usuario/correo" required style="padding: 10px; margin: 10px 0; width: 250px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar la contraseña -->
+            <input type="password" name="contrasena" placeholder="Contraseña" required style="padding: 10px; margin: 10px 0; width: 250px;border-radius: 10px;">
+            <br>
+            <!-- Botón para enviar el formulario de inicio de sesión -->
+            <button type="submit">Iniciar sesión</button>
+        </form>
+
+        <div class="button-container">
+            <!-- Botón para iniciar sesión con Facebook. Asegúrate de tener el archivo facebook-icon.png en 'static/images' -->
+            <button class="social-button" onclick="window.location.href='/login/facebook'">
+                <img src="{{ url_for('static', filename='images/facebook-icon.png') }}" alt="Facebook Login">
+            </button>
+            <!-- Botón para iniciar sesión con Google. Asegúrate de tener el archivo google-icon.png en 'static/images' -->
+            <button class="social-button" onclick="window.location.href='/login/google'">
+                <img src="{{ url_for('static', filename='images/google-icon.png') }}" alt="Google Login">
+            </button>
+        </div>
+
+        <div class="extra-links">
+            <!-- Enlace para registrarse si no tiene una cuenta -->
+            <p><a href="/estudiante/registrarse/">¿No tienes cuenta? Regístrate</a></p>
+            <!-- Enlace para recuperar la contraseña si la ha olvidado -->
+            <p><a href="/forgot_password">¿Olvidaste tu contraseña?</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+{% endblock %}

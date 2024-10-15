@@ -1,0 +1,95 @@
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        function toggleDropdown() {
+            document.getElementById("userDropdown").classList.toggle("hidden");
+        }
+
+        function highlightMenuItem(event) {
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => item.classList.remove('bg-green-800'));
+            event.currentTarget.classList.add('bg-green-800');
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="bg-green-900 text-white w-64 h-screen p-4 flex flex-col">
+            <div class="flex items-center mb-6">
+                <i class="fas fa-bars text-2xl mr-2"></i>
+                <span class="text-lg font-bold">NAME OF THE COMPANY</span>
+            </div>
+            <nav class="space-y-2 flex-grow">
+                <a href="#" class="block py-2 px-4 bg-green-700 rounded w-full menu-item" onclick="highlightMenuItem(event)">Home</a>
+                <a href="#" class="block py-2 px-4 bg-green-600 rounded w-full menu-item" onclick="highlightMenuItem(event)">Courses</a>
+                <a href="#" class="block py-2 px-4 bg-green-600 rounded w-full menu-item" onclick="highlightMenuItem(event)">Develop</a>
+                <a href="#" class="block py-2 px-4 bg-green-600 rounded w-full menu-item" onclick="highlightMenuItem(event)">Jobs</a>
+                <a href="#" class="block py-2 px-4 bg-green-600 rounded w-full menu-item" onclick="highlightMenuItem(event)">Technical support</a>
+                <a href="#" class="block py-2 px-4 bg-green-600 rounded w-full menu-item" onclick="highlightMenuItem(event)">Groups</a>
+            </nav>
+            <div class="mt-12">
+                <button class="w-full py-2 px-4 bg-green-800 rounded">Log out</button>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1">
+            <div class="bg-black p-4 flex justify-between items-center mb-6 rounded-tl">
+                <input type="text" placeholder="Type and press enter" class="w-1/2 p-2 rounded bg-gray-300 border border-black">
+                <div class="relative">
+                    <button onclick="toggleDropdown()" class="flex items-center space-x-2 text-white">
+                        <span>user.yxyxy</span>
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                    <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-gray-200 rounded shadow-lg hidden">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-300">Profile</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-300">Accomplishments</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-300">Settings</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-300">Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6">
+                <h2 class="text-xl font-bold mb-4">GOOD NEWS FOR YOU</h2>
+                <div class="border-t border-gray-400 mb-6"></div>
+                <h2 class="text-xl font-bold mb-4">YOUR REGISTERED COURSES</h2>
+                <div class="border-t border-gray-400 mb-6"></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Course Card 1 -->
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="font-bold">Analog IC Design for Beginners</h3>
+                        <span class="block bg-green-600 text-white text-center rounded py-1 my-2">PAID</span>
+                        <div class="text-center mb-2">80% Completed</div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                                <span class="ml-1">4.8</span>
+                            </div>
+                            <span>200 ratings</span>
+                        </div>
+                        <div class="text-center mb-2">Active Hours: 10 hours</div>
+                        <button class="w-full py-2 px-4 bg-gray-300 rounded mt-4">Open Course</button>
+                    </div>
+                    <!-- Course Card 2 -->
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="font-bold">CMOS Analog Circuit Design</h3>
+                        <span class="block bg-green-600 text-white text-center rounded py-1 my-2">FREE</span>
+                        <div class="text-center mb-2">10% Completed</div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <span class="text-yellow-500"><i class="fas fa-star"></i></span>
+                                <span class="ml-1">4.8</span>
+                            </div>
+                            <span>200 ratings</span>
+                        </div>
+                        <div class="text-center mb-2">Active Hours: 2 hours</div>
+                        <button class="w-full py-2 px-4 bg-gray-300 rounded mt-4">Open Course</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

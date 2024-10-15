@@ -1,0 +1,165 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Login</title>
+    <style>
+        /* Configuración básica para eliminar márgenes y hacer que la página use todo el alto de la ventana */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            /* Imagen de fondo para toda la página */
+            background: url("{{ url_for('static', filename='images/image2.png') }}") no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Estilo para el contenedor que muestra el nombre de la compañía y el logo */
+        .company-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            color: white; /* Color del texto del nombre de la compañía */
+        }
+
+        /* Estilo del logo de la compañía */
+        .company-header img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px; /* Espaciado entre el logo y el texto del nombre */
+        }
+
+        /* Estilo para el nombre de la compañía */
+        .company-header h1 {
+            font-size: 3em; /* Tamaño de la fuente del nombre de la compañía */
+            margin: 0;
+        }
+
+        /* Estilo para el contenedor del formulario de inicio de sesión */
+        .login-container {
+            position: absolute;
+            bottom: 20px;
+            top: 37%; /* Centra verticalmente */
+            right: 40px;
+            text-align: center;
+            color: rgb(12, 14, 13); /* Color del texto */
+        }
+        .login-container h1{
+            color: rgb(252, 252, 252); /* Color del texto */
+        }
+        /* Estilo del encabezado principal (título) de la página de inicio de sesión */
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px; /* Margen inferior para dar espacio antes del formulario */
+        }
+
+        /* Estilo para el contenedor que contiene los botones de inicio de sesión con redes sociales */
+        .button-container {
+            margin-top: 20px;
+            display: flex; /* Usa Flexbox para organizar los botones */
+            flex-direction: row; /* Alinea los botones horizontalmente */
+            justify-content: center; /* Centra los botones horizontalmente */
+            gap: 10px; /* Espacio horizontal entre los botones */
+        }
+
+        /* Estilo general para los botones */
+        button {
+            padding: 10px 30px;
+            margin: 10px 100px; /* Espaciado vertical entre el formulario y los botones */
+            border: none; /* Sin borde para los botones */
+            background-color: #4CAF50; /* Color de fondo del botón */
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer; /* Muestra el cursor de "manito" */
+            border-radius: 10px; /* Bordes redondeados */
+            width: 250px; /* Ancho de los botones */
+        }
+
+        /* Cambio de color cuando se pasa el ratón sobre los botones */
+        button:hover {
+            background-color: #45a049; /* Color más oscuro al pasar el cursor */
+        }
+        .flash-messages {
+            color: white;
+            background-color: #ff6b6b; /* Rojo para errores */
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .flash-success {
+            background-color: #4caf50; /* Verde para éxito */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Contenedor para el nombre de la compañía e ícono -->
+    <div class="company-header">
+        <!-- Muestra el logo de la compañía. Asegúrate de tener el archivo logo.png en la carpeta 'static/images' -->
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Company Logo">
+        <h1>Registra_tus_credenciales</h1> <!-- Nombre de la compañía -->
+    </div>
+
+
+    <div class="login-container">
+        <!-- <h1>Bienvenido estudiante</h1> Título de la página -->
+          <!-- Mensajes flash (exito/error) -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+          <div class="flash-container">
+            {% for category, message in messages %}
+              <div class="flash-messages {{ 'flash-' + category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+        <!-- Formulario de inicio de sesión para ingresar username/email y contraseña -->
+        <form action="/estudiante/guardar" method="POST">
+            <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+            <input type="text" name="nombre" placeholder="Nombres" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+            <input type="text" name="apellido" placeholder="Apellidos" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+            <input type="text" name="nombre_usuario" placeholder="Nombre de usuario" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar la contraseña -->
+            <input type="password" name="contrasena" placeholder="Contraseña" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar la contraseña -->
+            <input type="password" name="confirmar_contrasena" placeholder="Confirmar contraseña" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Botón para enviar el formulario de inicio de sesión -->
+            <button type="submit">Continue</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (event) => {
+            const password = form.querySelector('input[name="contrasena"]').value;
+            const confirmPassword = form.querySelector('input[name="confirmar_contrasena"]').value;
+            
+            if (password !== confirmPassword) {
+                event.preventDefault(); // Evita el envío del formulario
+                alert('Las contraseñas no coinciden.');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+{% endblock %}
