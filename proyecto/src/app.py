@@ -11,7 +11,7 @@ def inicio():
 ##################Estudiante #################
 
 @app.route('/estudiante/')
-def iniciar_sesion():
+def iniciarSesion():
     return render_template('estudiante/iniciar_sesion.html')
 
 @app.route('/estudiante/registrarse/')
@@ -19,7 +19,7 @@ def registro():
     return render_template('estudiante/registrarse.html')
 
 @app.route('/estudiante/guardar/',methods = ['POST', 'GET'])
-def guardar_resgistro():
+def guardarRegistro():
     if request.method == 'POST':
         nombre = request.form.get('nombre')
         apellido = request.form.get('apellido')
@@ -40,6 +40,45 @@ def cursos():
 def facturacion():
     return render_template('estudiante/facturacion.html')
 
+@app.route('/estudiante/inicio/')
+def estudianteInicio():
+    return render_template('estudiante/inicio.html')
+
+@app.route('/estudiante/cursosRuta/')
+def estudianteCursosRuta():
+    return render_template('estudiante/cursosRuta.html')
+
+@app.route('/estudiante/cursosWebinar/')
+def estudianteCursosWebinar():
+    return render_template('estudiante/cursosWebinar.html')
+
+@app.route('/estudiante/inicioPadre/')
+def estudianteInicioPadre():
+    return render_template('estudiante/inicioPadre.html')
+
+@app.route('/estudiante/desarrollo/')
+def estudianteDesarrollo():
+    return render_template('estudiante/desarrollo.html')
+
+@app.route('/estudiante/desarrolloManufactura/')
+def estudianteDesarrolloManufactura():
+    return render_template('estudiante/desarrolloManufactura.html')
+
+@app.route('/estudiante/trabajo/')
+def estudianteTrabajo():
+    return render_template('estudiante/trabajo.html')
+
+@app.route('/estudiante/soporte/')
+def estudianteSoporte():
+    return render_template('estudiante/soporte.html')
+
+@app.route('/estudiante/cursosVenta/')
+def estudianteCursoVenta():
+    return render_template('estudiante/cursosVenta.html')
+
+@app.route('/estudiante/cursosUso/')
+def estudianteCursoUso():
+    return render_template('estudiante/cursosUso.html')
 ################ADMINISTRADOR##############
 @app.route('/administrador/')
 def administrador():
