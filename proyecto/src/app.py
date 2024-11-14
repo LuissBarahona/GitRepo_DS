@@ -248,6 +248,11 @@ def administradorCursoVenta():
 def administradorCursoUso():
     return render_template('administrador/cursosUso.html')
 
+@app.route('/administrador/cursos/cursoForm')
+def adminCursoForm():
+    return render_template('administrador/cursoForm.html')
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('error.html')
