@@ -1,10 +1,6 @@
 from flask import Flask, flash, render_template, redirect, url_for, request, session
 from dao.DAOEstudiante import DAOEstudiante
-<<<<<<< HEAD
 import bcrypt
-=======
-#lucho chupando GAAAAAAAAAAAAAAAAAAAAAAAAA
->>>>>>> 826bb8d27db6ea1a0146e63d48bf2e7b966f1390
 app = Flask(__name__)
 app.secret_key = "mys3cr3tk3y"
 db = DAOEstudiante()
@@ -17,7 +13,7 @@ def login_requerido(f):
         return f(*args, **kwargs)  # Si está autenticado, continua con la ejecución de la ruta
     wrapper.__name__ = f.__name__ 
     return wrapper
-##################Inicio######################
+##################Inicio(ESTUDIANTE ADMINISTRADOR)######################
 @app.route('/')
 def inicio():
     return render_template('index.html')
@@ -121,6 +117,7 @@ def estudianteCursoVenta():
 def estudianteCursoUso():
     return render_template('estudiante/cursosUso.html')
 ################ADMINISTRADOR##############
+#################DESDE ACÁ EMPIEZA LUCHO CON ADMINISTRADOR#########
 @app.route('/administrador/')
 def administrador():
     return render_template('administrador/index.html')
