@@ -2,12 +2,7 @@
 from flask import Flask, flash, render_template, redirect, url_for, request, session
 from dao.DAOEstudiante import DAOEstudiante
 from dao.DAOAdmin import DAOAdmin
-from noticias import obtener_noticias  # Importa la función obtener_noticias
 import bcrypt
-import requests
-
-from datetime import datetime
-
 app = Flask(__name__)
 app.secret_key = "mys3cr3tk3y"
 db = DAOEstudiante()
@@ -25,27 +20,6 @@ def login_requerido(f):
 @app.route('/')
 def inicio():
     return render_template('index.html')
-
-
-#FUNCIONES adicionales DE LUCHO PARA EL ADMIN
-
-NEWS_API_KEY = '99fde377df2f4d1082857bb8042dedfe'  # Inserta aquí tu API Key de News API u otra API de noticias
-
-
-def obtener_noticias():
-    url = ('https://newsapi.org/v2/everything?q=embedded%20systems%20OR%20electronics&'
-           'sortBy=publishedAt&apiKey=' + NEWS_API_KEY)
-    response = requests.get(url)
-    noticias = response.json().get('articles', [])
-    
-    # Formatear la fecha en cada artículo
-    for noticia in noticias:
-        if 'publishedAt' in noticia:
-            noticia['publishedAt'] = datetime.strptime(noticia['publishedAt'], '%Y-%m-%dT%H:%M:%SZ').strftime('%d/%m/%Y')
-
-    return noticias[:8]
-
-
 ##################Estudiante #################
 
 @app.route('/estudiante/')
@@ -104,12 +78,10 @@ def cursos():
 def facturacion():
     return render_template('estudiante/facturacion.html')
 
-# Ruta de inicio de estudiante
 @app.route('/estudiante/inicio/')
 @login_requerido
 def estudianteInicio():
-    noticias = obtener_noticias()  # Llama a la función y guarda las noticias en la variable
-    return render_template('estudiante/inicio.html', noticias=noticias)
+    return render_template('estudiante/inicio.html')
 
 
 @app.route('/estudiante/cursosRuta/')
@@ -148,7 +120,7 @@ def estudianteCursoVenta():
 def estudianteCursoUso():
     return render_template('estudiante/cursosUso.html')
 ###############ADMINISTRADOR##############
-#################DESDE ACÁ EMPIEZA LUCHO CON ADMINISTRADOR TEMPLATES #########
+#################DESDE ACÁ EMPIEZA LUCHO CON ADMINISTRADOR#########
 @app.route('/administrador/')
 def iniciarSesionAdmin():
     return render_template('administrador/iniciar_sesion.html')
@@ -208,8 +180,7 @@ def facturacionAdmin():
 @app.route('/administrador/inicio/')
 @login_requerido
 def administradorInicio():
-    noticias = obtener_noticias() 
-    return render_template('administrador/inicio.html',noticias=noticias)
+    return render_template('administrador/inicio.html')
 
 
 @app.route('/administrador/cursosRuta/')
@@ -247,6 +218,7 @@ def administradorCursoVenta():
 @app.route('/administrador/cursosUso/')
 def administradorCursoUso():
     return render_template('administrador/cursosUso.html')
+#FIN LUCHO
 
 @app.errorhandler(404)
 def page_not_found(error):

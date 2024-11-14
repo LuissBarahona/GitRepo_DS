@@ -1,75 +1,24 @@
-{% extends 'inicioPadre.html' %}
+{% extends 'inicioPadreAdmin.html' %}
 
 {% block body %}
-
-<!-- Content -->
 <div class="p-8">
     <h2 class="text-xl font-bold mb-4">GOOD NEWS FOR YOU</h2>
     <hr class="mb-8">
-    <div class="grid grid-cols-4 gap-4">
-        <!-- Course Card 1 -->
-        <div class="border p-4 bg-gray-100 text-center">
-            <h3 class="font-bold">Analog IC Design for Beginners</h3>
-            <div class="bg-green-200 text-green-800 px-2 py-1 inline-block mt-2">PAID</div>
-            <div class="mt-2 bg-green-500 p-2">80% Completed</div>
-            <div class="flex items-center justify-center mt-2">
-                <span class="text-yellow-500"><i class="fas fa-star"></i> 4.8</span>
-                <span class="ml-2 text-gray-500">230 ratings</span>
-            </div>
-            <div class="flex items-center justify-between mt-2">
-                <div class="text-gray-500">11 hours</div>
-                <a href="open_course.html" class="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-300">Open Course</a>
-            </div>
+    {% if noticias %}
+        <div class="grid grid-cols-4 gap-4">
+            {% for noticia in noticias %}
+                <div class="border p-4 bg-gray-100 text-center">
+                    <h3 class="font-bold">{{ noticia['title'] }}</h3>
+                    <p class="text-gray-700 mt-2">{{ noticia['description'] }}</p>
+                    <div class="text-gray-500">{{ noticia['publishedAt'] }}</div>
+                    <a href="{{ noticia['url'] }}" target="_blank" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mt-4 inline-block">
+                        Leer más
+                    </a>
+                </div>
+            {% endfor %}
         </div>
-        <!-- Course Card 2 -->
-        <div class="border p-4 bg-gray-100 text-center">
-            <h3 class="font-bold">CMOS Analog Circuit Design</h3>
-            <div class="bg-green-200 text-green-800 px-2 py-1 inline-block mt-2">FREE</div>
-            <div class="mt-2 bg-green-500 p-2">10% Completed</div>
-            <div class="flex items-center justify-center mt-2">
-                <span class="text-yellow-500"><i class="fas fa-star"></i> 4.8</span>
-                <span class="ml-2 text-gray-500">230 ratings</span>
-            </div>
-            <div class="flex items-center justify-between mt-2">
-                <div class="text-gray-500">11 hours</div>
-                <a href="open_course.html" class="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-300">Open Course</a>
-            </div>
-        </div>
-        
-    </div>
-    <h2 class="text-xl font-bold mb-4">YOUR REGISTERED COURSES</h2>
-    <hr class="mb-4">
-    <div class="grid grid-cols-4 gap-4">
-        <!-- Course Card 1 -->
-        <div class="border p-4 bg-gray-100 text-center">
-            <h3 class="font-bold">Analog IC Design for Beginners</h3>
-            <div class="bg-green-200 text-green-800 px-2 py-1 inline-block mt-2">PAID</div>
-            <div class="mt-2 bg-green-500 p-2">80% Completed</div>
-            <div class="flex items-center justify-center mt-2">
-                <span class="text-yellow-500"><i class="fas fa-star"></i> 4.8</span>
-                <span class="ml-2 text-gray-500">230 ratings</span>
-            </div>
-            <div class="flex items-center justify-between mt-2">
-                <div class="text-gray-500">11 hours</div>
-                <a href="open_course.html" class="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-300">Open Course</a>
-            </div>
-        </div>
-        <!-- Course Card 2 -->
-        <div class="border p-4 bg-gray-100 text-center">
-            <h3 class="font-bold">CMOS Analog Circuit Design</h3>
-            <div class="bg-green-200 text-green-800 px-2 py-1 inline-block mt-2">FREE</div>
-            <div class="mt-2 bg-green-500 p-2">10% Completed</div>
-            <div class="flex items-center justify-center mt-2">
-                <span class="text-yellow-500"><i class="fas fa-star"></i> 4.8</span>
-                <span class="ml-2 text-gray-500">230 ratings</span>
-            </div>
-            <div class="flex items-center justify-between mt-2">
-                <div class="text-gray-500">11 hours</div>
-                <a href="open_course.html" class="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-300">Open Course</a>
-            </div>
-        </div>
-        
-    </div>
+    {% else %}
+        <p class="text-gray-500">No hay noticias disponibles en este momento.</p>
+    {% endif %}
 </div>
-
 {% endblock %}
