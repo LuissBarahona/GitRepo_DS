@@ -252,6 +252,15 @@ def administradorCursoUso():
 def adminCursoForm():
     return render_template('administrador/cursoForm.html')
 
+@app.route('/administrador/cursos/desarrolloForm')
+def adminDesarrolloForm():
+    return render_template('administrador/desarrolloForm.html')
+
+@app.route('/administrador/cursos/jobForm')
+def adminJobForm():
+    return render_template('administrador/jobForm.html')
+
+
 
 @app.errorhandler(404)
 def page_not_found(error):

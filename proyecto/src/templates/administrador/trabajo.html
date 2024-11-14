@@ -15,6 +15,9 @@
                 <a href="#asia" class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg w-48 text-center">Jobs in Asia</a>
                 <a href="#north-america" class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-4 rounded-lg w-48 text-center">Jobs in North America</a>
             </div>
+
+            
+            
         </div>
 
         <!-- Jobs in Europe Section -->
@@ -48,6 +51,16 @@
 
         <h3 id="north-america" class="text-lg font-semibold text-gray-700 my-8">Jobs in North America</h3>
         <p class="text-gray-600">No job listings available in this region currently.</p>
+
+       
+         <!-- Formulario para añadir un job -->
+         <div class="mt-4 flex justify-end pr-8">
+            <button onclick="window.location.href='/administrador/cursos/jobForm'" 
+                    class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition duration-300">
+                Añadir Nuevo Job
+            </button>
+        </div>
+        
     </div>
 </body>
 {% endblock %}

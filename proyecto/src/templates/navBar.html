@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlaza a tu archivo CSS -->
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Company Logo" class="logo">
+            <span class="company-name">Z&B Electronics</span>
+        </div>
+        <div class="navbar-right">
+            <button class="nav-button">Estudiante</button>
+            <button class="nav-button">Administrador</button>
+        </div>
+    </nav>
+</body>
+</html>
