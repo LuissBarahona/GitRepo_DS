@@ -1,0 +1,27 @@
+RUTA: /home/luisbarahona/Documents/CreatedByBarahona/Repositories_Code/DS_Repository/GitRepo_DS/Lab12/flaskApp
+ESTADO: Funciona - corre desde docker 
+PASO 1: Crear repo
+PASO 2: Crear entorno virtual dentro del repo
+PASO 3: Crear requirements.txt 
+    flask==2.3.3
+PASO 4: Crear app.py sin src
+PASO 5: Crear templates/index.html
+
+PASO 6: Crear un archivo Dockerfile sin extención
+PASO 7: Construir 
+    
+
+    //COMPRIMIR Y PASAR A UN SERVIDOR UBUNTU DESDE WINDOWS MEDIANTE GIT NUESTRO REPO 
+    scp -i "key-servidor-docker.pem" flask_app.zip ubuntu@35.91.178.80:/home/ubuntu
+
+    //DENTRO DE LINUX DESCOMPRIMIR
+    sudo apt install unzip
+    sudo unzip flaskApp.zip
+
+    //CUANDO YA TENEGAMOS EL REPO EN UBUNTU, PODREMOS EKECUTAR EL docker build 
+    
+
+    docker build -t mi_flask_app .
+    docker run -p 5000:5000 mi_flask_app
+                (3000 srvior host:donde esta instalado docker)
+                (5000 el contendedor)

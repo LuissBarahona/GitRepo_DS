@@ -1,0 +1,60 @@
+1. CREACIÓN DE LA TABLA USUARIO DENTRO DE UNA BASE DE DATOS POSTGRES ALOJADA EN DOCKER
+	#PASO 1: Instalar docker de ser necesario
+	
+	#Paso 2: Descarga y Ejecuta el Contenedor de PostgreSQL
+		docker run --name mi_postgres -e POSTGRES_USER=usuario -e POSTGRES_PASSWORD=contraseña -e POSTGRES_DB=mi_base_de_datos -p 5432:5432 -d postgres
+		
+		docker run f2bf8af4fe53
+	
+	#Paso 3: Crear la tabla usuario dentro de la base de datos
+		docker exec -it mi_postgres psql -U usuario -d mi_base_de_datos
+		
+		/*CONTENIDO
+			CREATE TABLE usuarios (
+			    codigo SERIAL PRIMARY KEY,
+			    nombres VARCHAR(100) NOT NULL,
+			    login VARCHAR(50) UNIQUE NOT NULL,
+			    clave VARCHAR(255) NOT NULL,
+			    tipo VARCHAR(10) CHECK (tipo IN ('alumno', 'profesor')) NOT NULL
+			);
+
+	
+		
+		*/
+		
+		\d usuarios //verificar creación de tabla
+		\q //salir de postgres
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 2. CONTENEDORES SEPARADOS (UNA PARA LA DB Y OTRA PARA LA APP)
+ 	
+ 	docker-compose down   //si nos equivocamos
+	docker-compose up --build //contenedores en red 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+3. OTRA FORMA
+
+
+ 	

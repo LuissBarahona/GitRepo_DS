@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: mi_postgres
+    environment:
+      - POSTGRES_USER=usuario
+      - POSTGRES_PASSWORD=contraseña
+      - POSTGRES_DB=mi_base_de_datos
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+
+  web:
+    build: .
+    container_name: mi_flask_app
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - DATABASE_HOST=mi_postgres
+      - DATABASE_USER=usuario
+      - DATABASE_PASSWORD=contraseña
+      - DATABASE_NAME=mi_base_de_datos
+    networks:
+      - app-network
+    depends_on:
+      - db
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge

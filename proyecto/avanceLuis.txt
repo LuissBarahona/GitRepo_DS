@@ -14,7 +14,7 @@ REGISTRO DEL AVACE QUE VOY REALIZANDO
 
 
 -------------------
-COMANDOS ADICIONALES
+RECURSOS ADICIONALES
 1. VISUALZIACIÓN DE LA BASE DE DATOS MySQL 
     show tables;
     select * from usuario;

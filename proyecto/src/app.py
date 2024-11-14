@@ -1,6 +1,10 @@
 from flask import Flask, flash, render_template, redirect, url_for, request, session
 from dao.DAOEstudiante import DAOEstudiante
+<<<<<<< HEAD
 import bcrypt
+=======
+#lucho chupando GAAAAAAAAAAAAAAAAAAAAAAAAA
+>>>>>>> 826bb8d27db6ea1a0146e63d48bf2e7b966f1390
 app = Flask(__name__)
 app.secret_key = "mys3cr3tk3y"
 db = DAOEstudiante()
