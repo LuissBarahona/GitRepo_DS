@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio Alumno</title>
+</head>
+<body>
+    <h2>Bienvenido, Alumno {{ session['nombres'] }}</h2>
+    <button onclick="location.href='/alumno/inicio'">Inicio</button>
+    <button onclick="location.href='/alumno/notas'">Notas</button>
+    <button onclick="location.href='/alumno/horario'">Horario</button>
+    <button onclick="location.href='/logout'">Logout</button>
+</body>
+</html>
