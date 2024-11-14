@@ -116,6 +116,17 @@
             width: 50px; /* Tamaño de la imagen (ícono) */
             height: 50px;
         }
+        .flash-messages {
+            color: white;
+            background-color: #ff6b6b; /* Rojo para errores */
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .flash-success {
+            background-color: #4caf50; /* Verde para éxito */
+        }
     </style>
 </head>
 <body>
@@ -129,10 +140,22 @@
     <div class="login-container">
         <h1>Bienvenido estudiante</h1> <!-- Título de la página -->
 
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+          <div class="flash-container">
+            {% for category, message in messages %}
+              <div class="flash-messages {{ 'flash-' + category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% endwith %}
+
         <!-- Formulario de inicio de sesión para ingresar username/email y contraseña -->
-        <form action="/estudiante/inicio/" method="GET">
+        <form action="/estudiante/entrar/" method="POST">
             <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
-            <input type="text" name="username_or_email" placeholder="Nombre de usuario/correo" required style="padding: 10px; margin: 10px 0; width: 250px;border-radius: 10px;">
+            <input type="text" name="correoNombreUsuario" placeholder="Nombre de usuario/correo" required style="padding: 10px; margin: 10px 0; width: 250px;border-radius: 10px;">
             <br>
             <!-- Campo para ingresar la contraseña -->
             <input type="password" name="contrasena" placeholder="Contraseña" required style="padding: 10px; margin: 10px 0; width: 250px;border-radius: 10px;">

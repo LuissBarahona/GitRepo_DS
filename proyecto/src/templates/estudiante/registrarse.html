@@ -46,7 +46,7 @@
         .login-container {
             position: absolute;
             bottom: 20px;
-            top: 37%; /* Centra verticalmente */
+            top: 20%; /* Centra verticalmente */
             right: 40px;
             text-align: center;
             color: rgb(12, 14, 13); /* Color del texto */
@@ -133,7 +133,10 @@
             <input type="text" name="apellido" placeholder="Apellidos" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
             <br>
             <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
-            <input type="text" name="nombre_usuario" placeholder="Nombre de usuario" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <input type="text" name="nombreUsuario" placeholder="Nombre de usuario" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+            <input type="text" name="correo" placeholder="Correo electrónico" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
             <br>
             <!-- Campo para ingresar la contraseña -->
             <input type="password" name="contrasena" placeholder="Contraseña" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
@@ -160,6 +163,5 @@
     </script>
 </body>
 </html>
-
 
 {% endblock %}

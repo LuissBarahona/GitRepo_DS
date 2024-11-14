@@ -18,28 +18,28 @@
         <nav class="flex-1">
             <ul>
                 <li class="m-2 rounded">
-                    <a href="/home" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Home</a>
+                    <a href="{{ url_for('estudianteInicio') }}" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Inicio</a>
                 </li>
                 <li class="m-2 rounded">
-                    <a href="/courses" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Courses</a>
+                    <a href="{{ url_for('cursos') }}" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Cursos</a>
                 </li>
                 <li class="m-2 rounded">
-                    <a href="/develop" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Develop</a>
+                    <a href="{{ url_for('estudianteDesarrollo') }}" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Desarrollo</a>
                 </li>
                 <li class="m-2 rounded">
-                    <a href="/jobs" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Jobs</a>
+                    <a href="{{ url_for('estudianteTrabajo') }}" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Trabajos</a>
                 </li>
                 <li class="m-2 rounded">
-                    <a href="/support" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Technical support</a>
+                    <a href="{{ url_for('estudianteSoporte') }}" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Soporte</a>
                 </li>
                 <li class="m-2 rounded">
-                    <a href="/groups" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Groups</a>
+                    <a href="/groups" class="block p-4 bg-green-800 hover:bg-green-700 rounded">Grupos</a>
                 </li>
             </ul>
         </nav>
         <div class="p-4">
-            <a href="/logout" class="bg-green-800 w-full py-2 rounded text-center text-white hover:bg-green-700 transition duration-300 block">
-                Log out
+            <a href="{{ url_for('cerrar_sesion') }}" class="bg-green-800 w-full py-2 rounded text-center text-white hover:bg-green-700 transition duration-300 block">
+                Cerrar sesión
             </a>
         </div>
     </div>
@@ -53,14 +53,14 @@
             <input type="text" placeholder="Type and press enter" class="bg-gray-300 text-black rounded-full px-4 py-2 w-1/2">
             <div class="relative">
                 <button class="flex items-center" onclick="toggleDropdown()">
-                    <span>user.yxyxy</span>
+                    <span>{{ session.get('username', 'Usuario') }}</span>
                     <i class="fas fa-caret-down ml-2"></i>
                 </button>
                 <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white text-black shadow-lg hidden">
                     <a href="#" class="block px-4 py-2 hover:bg-gray-200"><i class="fas fa-user mr-2"></i>Profile</a>
                     <a href="#" class="block px-4 py-2 hover:bg-gray-200"><i class="fas fa-trophy mr-2"></i>Accomplishments</a>
                     <a href="#" class="block px-4 py-2 hover:bg-gray-200"><i class="fas fa-cog mr-2"></i>Settings</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-200"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                    <a href="{{ url_for('cerrar_sesion') }}" class="block px-4 py-2 hover:bg-gray-200"><i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión</a>
                 </div>
             </div>
         </div>
