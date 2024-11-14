@@ -38,7 +38,7 @@
 
         /* Estilo para el nombre de la compañía */
         .company-header h1 {
-            font-size: 5em; /* Tamaño de la fuente del nombre de la compañía */
+            font-size: 3em; /* Tamaño de la fuente del nombre de la compañía */
             margin: 0;
         }
 
@@ -46,7 +46,8 @@
         .login-container {
             position: absolute;
             bottom: 20px;
-            right: 20px;
+            top: 20%; /* Centra verticalmente */
+            right: 40px;
             text-align: center;
             color: rgb(12, 14, 13); /* Color del texto */
         }
@@ -65,13 +66,13 @@
             display: flex; /* Usa Flexbox para organizar los botones */
             flex-direction: row; /* Alinea los botones horizontalmente */
             justify-content: center; /* Centra los botones horizontalmente */
-            gap: 20px; /* Espacio horizontal entre los botones */
+            gap: 10px; /* Espacio horizontal entre los botones */
         }
 
         /* Estilo general para los botones */
         button {
-            padding: 10px 20px;
-            margin: 10px 0; /* Espaciado vertical entre el formulario y los botones */
+            padding: 10px 30px;
+            margin: 10px 100px; /* Espaciado vertical entre el formulario y los botones */
             border: none; /* Sin borde para los botones */
             background-color: #4CAF50; /* Color de fondo del botón */
             color: white;
@@ -85,37 +86,6 @@
         button:hover {
             background-color: #45a049; /* Color más oscuro al pasar el cursor */
         }
-
-        /* Enlaces adicionales como "Registrarse" y "Olvidaste tu contraseña" */
-        .extra-links {
-            margin-top: 10px;
-            color: white; /* Color del texto de los enlaces */
-        }
-
-        /* Estilo para los enlaces dentro del contenedor extra-links */
-        .extra-links a {
-            color: rgb(255, 255, 255); /* Color del enlace */
-            text-decoration: none; /* Elimina el subrayado */
-            font-size: 1em; /* Tamaño de la fuente */
-        }
-
-        /* Subraya los enlaces al pasar el cursor por encima */
-        .extra-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Estilo para los botones con imagen (Facebook y Google) */
-        .social-button {
-            background-color: transparent; /* Sin color de fondo */
-            border: none; /* Sin borde */
-            cursor: pointer; /* Muestra el cursor de "manito" */
-        }
-
-        /* Estilo para las imágenes dentro de los botones sociales */
-        .social-button img {
-            width: 50px; /* Tamaño de la imagen (ícono) */
-            height: 50px;
-        }
         .flash-messages {
             color: white;
             background-color: #ff6b6b; /* Rojo para errores */
@@ -127,6 +97,7 @@
         .flash-success {
             background-color: #4caf50; /* Verde para éxito */
         }
+
     </style>
 </head>
 <body>
@@ -134,12 +105,13 @@
     <div class="company-header">
         <!-- Muestra el logo de la compañía. Asegúrate de tener el archivo logo.png en la carpeta 'static/images' -->
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Company Logo">
-        <h1>Zavala & Barahona Inc</h1> <!-- Nombre de la compañía -->
+        <h1>Registra_tus_credenciales</h1> <!-- Nombre de la compañía -->
     </div>
 
-    <div class="login-container">
-        <h1>Bienvenido Estudiante</h1> <!-- Título de la página -->
 
+    <div class="login-container">
+        <!-- <h1>Bienvenido administrador</h1> Título de la página -->
+          <!-- Mensajes flash (exito/error) -->
         {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
           <div class="flash-container">
@@ -150,40 +122,46 @@
             {% endfor %}
           </div>
         {% endif %}
-        {% endwith %}
+      {% endwith %}
 
         <!-- Formulario de inicio de sesión para ingresar username/email y contraseña -->
-        <form action="/estudiante/entrar/" method="POST">
+        <form action="/administrador/guardar" method="POST">
             <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
-            <input type="text" name="correoNombreUsuario" placeholder="Nombre de usuario/correo" required style="padding: 10px; margin: 10px 0; width: 250px;border-radius: 10px;">
+            <input type="text" name="nombre" placeholder="Nombres" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+            <input type="text" name="apellido" placeholder="Apellidos" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+            <input type="text" name="nombreUsuario" placeholder="Nombre de usuario" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+            <input type="text" name="correo" placeholder="Correo electrónico" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
             <br>
             <!-- Campo para ingresar la contraseña -->
-            <input type="password" name="contrasena" placeholder="Contraseña" required style="padding: 10px; margin: 10px 0; width: 250px;border-radius: 10px;">
+            <input type="password" name="contrasena" placeholder="Contraseña" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <br>
+            <!-- Campo para ingresar la contraseña -->
+            <input type="password" name="confirmar_contrasena" placeholder="Confirmar contraseña" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
             <br>
             <!-- Botón para enviar el formulario de inicio de sesión -->
-            <button type="submit">Iniciar sesión</button>
+            <button type="submit">Continue</button>
         </form>
-
-        <div class="button-container">
-            <!-- Botón para iniciar sesión con Facebook. Asegúrate de tener el archivo facebook-icon.png en 'static/images' -->
-            <button class="social-button" onclick="window.location.href='/login/facebook'">
-                <img src="{{ url_for('static', filename='images/facebook-icon.png') }}" alt="Facebook Login">
-            </button>
-            <!-- Botón para iniciar sesión con Google. Asegúrate de tener el archivo google-icon.png en 'static/images' -->
-            <button class="social-button" onclick="window.location.href='/login/google'">
-                <img src="{{ url_for('static', filename='images/google-icon.png') }}" alt="Google Login">
-            </button>
-        </div>
-
-        <div class="extra-links">
-            <!-- Enlace para registrarse si no tiene una cuenta -->
-            <p><a href="/estudiante/registrarse/">¿No tienes cuenta? Regístrate</a></p>
-            <!-- Enlace para recuperar la contraseña si la ha olvidado -->
-            <p><a href="/forgot_password">¿Olvidaste tu contraseña?</a></p>
-        </div>
     </div>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (event) => {
+            const password = form.querySelector('input[name="contrasena"]').value;
+            const confirmPassword = form.querySelector('input[name="confirmar_contrasena"]').value;
+            
+            if (password !== confirmPassword) {
+                event.preventDefault(); // Evita el envío del formulario
+                alert('Las contraseñas no coinciden.');
+            }
+        });
+    </script>
 </body>
 </html>
-
 
 {% endblock %}

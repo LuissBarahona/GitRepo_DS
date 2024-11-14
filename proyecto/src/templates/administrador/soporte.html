@@ -1,0 +1,37 @@
+{% extends 'inicioPadre.html' %}
+{% block body %}
+<body class="bg-gray-100 p-6">
+    <div class="max-w-lg p-4 py-2">
+        <!-- Categorías -->
+        <div class="text-center bg-gray-200 py-2 rounded-md font-semibold mb-4 ">Categories</div>
+
+        <!-- Sección Attended -->
+        <div class="mb-6">
+            <h2 class="text-lg font-bold mb-2">Attended</h2>
+            <hr class="border-gray-300 mb-4">
+            <div class="bg-gray-100 p-4 rounded-md shadow-md flex items-start justify-between">
+                <div>
+                    <p class="text-sm text-gray-600">June 5th, 2024</p>
+                    <p class="font-semibold">Liliam Zavala Tito</p>
+                    <p class="text-gray-700 mt-1">Hi! I can’t enter to Multisim</p>
+                </div>
+                <button class="bg-red-500 text-white px-3 py-1 rounded-md font-semibold">Attended</button>
+            </div>
+        </div>
+
+        <!-- Sección Unread -->
+        <div>
+            <h2 class="text-lg font-bold mb-2">Unread</h2>
+            <hr class="border-gray-300 mb-4">
+            <div class="bg-gray-100 p-4 rounded-md shadow-md flex items-start justify-between">
+                <div>
+                    <p class="text-sm text-gray-600">June 5th, 2024</p>
+                    <p class="font-semibold">Liliam Barahona Granados</p>
+                    <p class="text-gray-700 mt-1">Hi! I can’t enter to Multisim</p>
+                </div>
+                <button class="bg-red-500 text-white px-3 py-1 rounded-md font-semibold">Unread</button>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

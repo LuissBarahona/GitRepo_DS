@@ -1,10 +1,12 @@
 #Yulinio
 from flask import Flask, flash, render_template, redirect, url_for, request, session
 from dao.DAOEstudiante import DAOEstudiante
+from dao.DAOAdmin import DAOAdmin
 import bcrypt
 app = Flask(__name__)
 app.secret_key = "mys3cr3tk3y"
 db = DAOEstudiante()
+dbA = DAOAdmin()
 ####La función login_requerido, realiza la proteccion de las rutas###
 def login_requerido(f):
     def wrapper(*args, **kwargs):
@@ -117,12 +119,106 @@ def estudianteCursoVenta():
 @app.route('/estudiante/cursosUso/')
 def estudianteCursoUso():
     return render_template('estudiante/cursosUso.html')
-################ADMINISTRADOR##############
+###############ADMINISTRADOR##############
 #################DESDE ACÁ EMPIEZA LUCHO CON ADMINISTRADOR#########
 @app.route('/administrador/')
-def administrador():
-    return render_template('administrador/index.html')
+def iniciarSesionAdmin():
+    return render_template('administrador/iniciar_sesion.html')
 
+@app.route('/administrador/entrar/', methods = ['POST', 'GET'])
+def entrarAdmin():
+    if request.method == 'POST':
+        username = request.form.get('correoNombreUsuario')
+        contrasena = request.form.get('contrasena')
+        # Recupera los datos del usuario de la base de datos
+        usuario = dbA.read(username)  # Ahora usando la nueva función
+
+        if usuario and bcrypt.checkpw(contrasena.encode('utf-8'), usuario['contrasena'].encode('utf-8')):
+            # flash('Inicio de sesión exitoso')
+            session['username'] = usuario['nombreUsuario']
+            return redirect(url_for('administradorInicio'))
+        else:
+            flash("Usuario o contraseña incorrecta")
+            return redirect(url_for('iniciarSesionAdmin'))
+        
+@app.route('/administrador/cerrar_sesion/')
+def cerrar_sesionAdmin():
+    session.pop('username', None)  # Elimina 'username' de la sesión
+    #flash("Has cerrado sesión exitosamente.")
+    return redirect(url_for('iniciarSesionAdmin'))
+
+@app.route('/administrador/registrarse/')
+def registroAdmin():
+    return render_template('administrador/registrarse.html')
+
+@app.route('/administrador/guardar/',methods = ['POST', 'GET'])
+def guardarRegistroAdmin():
+    if request.method == 'POST':
+        nombre = request.form.get('nombre')
+        apellido = request.form.get('apellido')
+        username = request.form.get('nombreUsuario')
+        correo = request.form.get('correo')
+        contrasena = request.form.get('contrasena')
+        hashed_password = bcrypt.hashpw(contrasena.encode('utf-8'), bcrypt.gensalt())
+        if dbA.insert({'nombre': nombre, 'apellido': apellido, 'nombreUsuario': username, 'correo': correo, 'contrasena': hashed_password}):
+
+            #flash('Registro exitoso')
+            return redirect(url_for('iniciarSesionAdmin'))
+        else:
+            flash("Nombre de usuario o correco existente")
+            return redirect(url_for('registroAdmin'))
+
+@app.route('/administrador/cursos/')
+def cursosAdmin():
+    return render_template('administrador/cursos.html')
+
+
+@app.route('/administrador/facturacion/')
+def facturacionAdmin():
+    return render_template('administrador/facturacion.html')
+
+@app.route('/administrador/inicio/')
+@login_requerido
+def administradorInicio():
+    return render_template('administrador/inicio.html')
+
+
+@app.route('/administrador/cursosRuta/')
+def administradorCursosRuta():
+    return render_template('administrador/cursosRuta.html')
+
+@app.route('/administrador/cursosWebinar/')
+def administradorCursosWebinar():
+    return render_template('administrador/cursosWebinar.html')
+
+@app.route('/administrador/inicioPadre/')
+def administradorInicioPadre():
+    return render_template('administrador/inicioPadre.html')
+
+@app.route('/administrador/desarrollo/')
+def administradorDesarrollo():
+    return render_template('administrador/desarrollo.html')
+
+@app.route('/administrador/desarrolloManufactura/')
+def administradorDesarrolloManufactura():
+    return render_template('administrador/desarrolloManufactura.html')
+
+@app.route('/administrador/trabajo/')
+def administradorTrabajo():
+    return render_template('administrador/trabajo.html')
+
+@app.route('/administrador/soporte/')
+def administradorSoporte():
+    return render_template('administrador/soporte.html')
+
+@app.route('/administrador/cursosVenta/')
+def administradorCursoVenta():
+    return render_template('administrador/cursosVenta.html')
+
+@app.route('/administrador/cursosUso/')
+def administradorCursoUso():
+    return render_template('administrador/cursosUso.html')
+#FIN LUCHO
 
 @app.errorhandler(404)
 def page_not_found(error):

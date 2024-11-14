@@ -138,7 +138,7 @@
     </div>
 
     <div class="login-container">
-        <h1>Bienvenido Estudiante</h1> <!-- Título de la página -->
+        <h1>Bienvenido administrador</h1> <!-- Título de la página -->
 
         {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
@@ -153,7 +153,7 @@
         {% endwith %}
 
         <!-- Formulario de inicio de sesión para ingresar username/email y contraseña -->
-        <form action="/estudiante/entrar/" method="POST">
+        <form action="/administrador/entrar/" method="POST">
             <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
             <input type="text" name="correoNombreUsuario" placeholder="Nombre de usuario/correo" required style="padding: 10px; margin: 10px 0; width: 250px;border-radius: 10px;">
             <br>
@@ -177,7 +177,7 @@
 
         <div class="extra-links">
             <!-- Enlace para registrarse si no tiene una cuenta -->
-            <p><a href="/estudiante/registrarse/">¿No tienes cuenta? Regístrate</a></p>
+            <p><a href="/administrador/registrarse/">¿No tienes cuenta? Regístrate</a></p>
             <!-- Enlace para recuperar la contraseña si la ha olvidado -->
             <p><a href="/forgot_password">¿Olvidaste tu contraseña?</a></p>
         </div>
