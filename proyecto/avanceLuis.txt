@@ -13,8 +13,15 @@ REGISTRO DEL AVACE QUE VOY REALIZANDO
 
 
 
--------------------
-RECURSOS ADICIONALES
+
+--------------------------------------RECURSOS ADICIONALES
 1. VISUALZIACIÓN DE LA BASE DE DATOS MySQL 
     show tables;
     select * from usuario;
+
+
+
+2. LINKS IMPORTANTES
+    2.1 Figma Prototio: 
+
+
