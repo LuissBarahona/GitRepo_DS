@@ -24,3 +24,36 @@ pip install -r requirements.txt
 
 8. ejecutar el programa, ingresar a la carpeta SRC
 py app.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ENDPOINTS
+
+
+	http://localhost:3000/estudiante/cursos/
+	
