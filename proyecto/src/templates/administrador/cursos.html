@@ -1,0 +1,95 @@
+{% extends 'inicioPadreAdmin.html' %}
+
+{% block body %}
+<div class="p-0">
+    <div class="flex items-center justify-between mt-1 p-8 py-1">
+        <a href="open_course.html" class="bg-gray-200 text-black px-8 py-2 rounded-full hover:bg-gray-300 active:bg-gray-400 transition duration-300">Open Course</a>
+        <a href="roadlearning.html" class="bg-gray-200 text-black px-8 py-2 rounded-full hover:bg-gray-300 active:bg-gray-400 transition duration-300">Roadlearning</a>
+        <a href="webinars.html" class="bg-gray-200 text-black px-8 py-2 rounded-full hover:bg-gray-300 active:bg-gray-400 transition duration-300">Webinars</a>
+    </div>
+    
+    <div class="bg-black text-white flex items-center justify-between p-4 py-2">
+        <button class="bg-gray-200 text-black px-8 py-2 rounded-lg">Categorias</button>
+    </div>
+    <h2 class="text-black bg-gray-200 font-bold py-2 mt-3 p-8 m-4 rounded-lg">ANALOG INTEGRATED CIRCUIT DESING</h2>
+    <div class="grid grid-cols-4 py-1 gap-4 p-8">
+        <!-- Course Card 1 -->
+        <div class="border p-4 bg-gray-100 text-center">
+            <h3 class="font-bold">CMOS Analog Circuit Design</h3>
+            <div class="bg-green-200 text-green-800 px-2 py-1 inline-block mt-2">FREE</div>
+            <div class="mt-2 bg-green-500 p-2">10% Completed</div>
+            <div class="flex items-center justify-center mt-2">
+                <span class="text-yellow-500"><i class="fas fa-star"></i> 4.8</span>
+                <span class="ml-2 text-gray-500">230 ratings</span>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+                <div class="text-gray-500">11 hours</div>
+                <a href="open_course.html" class="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-300">Open Course</a>
+            </div>
+        </div>
+        <!-- Course Card 2 -->
+        <div class="border p-4 bg-gray-100 text-center">
+            <h3 class="font-bold">CMOS Analog Circuit Design</h3>
+            <div class="bg-green-200 text-green-800 px-2 py-1 inline-block mt-2">S/.100</div>
+            <div class="mt-2 bg-green-500 p-2">10% Completed</div>
+            <div class="flex items-center justify-center mt-2">
+                <span class="text-yellow-500"><i class="fas fa-star"></i> 4.8</span>
+                <span class="ml-2 text-gray-500">230 ratings</span>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+                <div class="text-gray-500">11 hours</div>
+                <a href="open_course.html" class="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-300">Open Course</a>
+            </div>
+        </div>
+
+        <!-- FORMULARIO PARA PODER AÑADIR UN NUEVO CURSO -->
+        <!-- Formulario para añadir un nuevo curso -->
+        <div class="mt-4 text-center">
+            <button onclick="window.location.href='/administrador/cursos/cursoForm'" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition duration-300">
+                Añadir Nuevo Curso
+            </button>
+        </div>
+        
+    </div>
+    <h2 class="text-black bg-gray-200 font-bold py-2 mt-3 p-8 m-4 rounded-lg">DIGITAL INTEGRATED CIRCUIT DESING</h2>
+    <div class="grid grid-cols-4 py-1 gap-4 p-8">
+        <!-- Course Card 1 -->
+        <div class="border p-4 bg-gray-100 text-center">
+            <h3 class="font-bold">CMOS Analog Circuit Design</h3>
+            <div class="bg-green-200 text-green-800 px-2 py-1 inline-block mt-2">FREE</div>
+            <div class="mt-2 bg-green-500 p-2">10% Completed</div>
+            <div class="flex items-center justify-center mt-2">
+                <span class="text-yellow-500"><i class="fas fa-star"></i> 4.8</span>
+                <span class="ml-2 text-gray-500">230 ratings</span>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+                <div class="text-gray-500">11 hours</div>
+                <a href="open_course.html" class="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-300">Open Course</a>
+            </div>
+        </div>
+        <!-- Course Card 2 -->
+        <div class="border p-4 bg-gray-100 text-center">
+            <h3 class="font-bold">CMOS Analog Circuit Design</h3>
+            <div class="bg-green-200 text-green-800 px-2 py-1 inline-block mt-2">S/.100</div>
+            <div class="mt-2 bg-green-500 p-2">10% Completed</div>
+            <div class="flex items-center justify-center mt-2">
+                <span class="text-yellow-500"><i class="fas fa-star"></i> 4.8</span>
+                <span class="ml-2 text-gray-500">230 ratings</span>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+                <div class="text-gray-500">11 hours</div>
+                <a href="open_course.html" class="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 active:bg-gray-400 transition duration-300">Open Course</a>
+            </div>
+        </div>
+
+        <!-- FORMULARIO PARA PODER AÑADIR UN NUEVO CURSO -->
+        <!-- Formulario para añadir un nuevo curso -->
+        <div class="mt-4 text-center">
+            <button onclick="window.location.href='/administrador/cursos/cursoForm'" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 active:bg-blue-700 transition duration-300">
+                Añadir Nuevo Curso
+            </button>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

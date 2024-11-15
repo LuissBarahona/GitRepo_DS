@@ -141,7 +141,7 @@
 
     <!-- Contenedor principal de inicio de sesión -->
     <div class="login-container">
-        <h1>Bienvenido Estudiante</h1>
+        <h1>Bienvenido administrador</h1>
 
         {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
@@ -155,7 +155,7 @@
         {% endif %}
         {% endwith %}
 
-        <form action="/estudiante/entrar/" method="POST">
+        <form action="/administrador/entrar/" method="POST">
             <input type="text" name="correoNombreUsuario" placeholder="Nombre de usuario/correo" required>
             <input type="password" name="contrasena" placeholder="Contraseña" required>
             <button type="submit">Iniciar sesión</button>
@@ -173,7 +173,7 @@
 
         <!-- Enlaces adicionales -->
         <div class="extra-links">
-            <p><a href="/estudiante/registrarse/">¿No tienes cuenta? Regístrate</a></p>
+            <p><a href="/administrador/registrarse/">¿No tienes cuenta? Regístrate</a></p>
             <p><a href="/forgot_password">¿Olvidaste tu contraseña?</a></p>
         </div>
     </div>

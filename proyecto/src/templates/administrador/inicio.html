@@ -1,0 +1,24 @@
+{% extends 'inicioPadreAdmin.html' %}
+
+{% block body %}
+<div class="p-8">
+    <h2 class="text-xl font-bold mb-4">GOOD NEWS FOR YOU</h2>
+    <hr class="mb-8">
+    {% if noticias %}
+        <div class="grid grid-cols-4 gap-4">
+            {% for noticia in noticias %}
+                <div class="border p-4 bg-gray-100 text-center">
+                    <h3 class="font-bold">{{ noticia['title'] }}</h3>
+                    <p class="text-gray-700 mt-2">{{ noticia['description'] }}</p>
+                    <div class="text-gray-500">{{ noticia['publishedAt'] }}</div>
+                    <a href="{{ noticia['url'] }}" target="_blank" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mt-4 inline-block">
+                        Leer más
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-gray-500">No hay noticias disponibles en este momento.</p>
+    {% endif %}
+</div>
+{% endblock %}
