@@ -27,16 +27,15 @@
         }
 
         .company-header img {
-            max-width: 50px; /* Ajusta el tamaño del logo según sea necesario */
+            max-width: 50px;
             height: auto;
         }
 
         .company-header h1 {
             margin: 0;
-            font-size: 24px; /* Ajusta el tamaño del texto según sea necesario */
+            font-size: 24px;
             color: white;
         }
-
 
         /* Contenedor del formulario */
         .login-container {
@@ -128,12 +127,27 @@
         .flash-success {
             background-color: #4CAF50;
         }
+
+        /* Botón al final */
+        .student-button {
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .student-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-    
     <!-- Encabezado de la compañía -->
-        <!-- Encabezado de la compañía -->
     <div class="company-header">
         <img src="https://png.pngtree.com/png-vector/20190307/ourlarge/pngtree-vector-electron-icon-png-image_781297.jpg" alt="Company Logo">
         <h1>Z&B Electronics</h1>
@@ -141,17 +155,17 @@
 
     <!-- Contenedor principal de inicio de sesión -->
     <div class="login-container">
-        <h1>Bienvenido administrador</h1>
+        <h1>Bienvenido Administrador</h1>
 
         {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
-          <div class="flash-container">
-            {% for category, message in messages %}
-              <div class="flash-messages {{ 'flash-' + category }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          </div>
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-messages {{ 'flash-' + category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
         {% endwith %}
 
@@ -174,8 +188,11 @@
         <!-- Enlaces adicionales -->
         <div class="extra-links">
             <p><a href="/administrador/registrarse/">¿No tienes cuenta? Regístrate</a></p>
-            <p><a href="/forgot_password">¿Olvidaste tu contraseña?</a></p>
+            <p><a href="/forgot_password/">¿Olvidaste tu contraseña?</a></p>
         </div>
+
+        <!-- Botón para estudiantes -->
+        <button class="student-button" onclick="window.location.href='/estudiante'">Cambiar a estudiante</button>
     </div>
 </body>
 </html>

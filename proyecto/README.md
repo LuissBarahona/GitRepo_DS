@@ -1,40 +1,10 @@
-1. clonar proyecto
-git clone https://github.com/jfarfannet/flask-poo-v1
 
-2. instalar virtualenv
-*py -m pip install --user virtualenv
-*py -m pip install virtualenv
+-------CONVENCIONES DEL PROYECTO ----
+1. Poner "/" al final de cada URL tanto en el app.py como en los html
 
 
-3.crear virtual llamando env
-virtualenv env
-o
-py -m venv env
-
-4. activar virtualenv
-env\Scripts\activate
-
-5. desactivar virtualenv
-deactivate
-
-6.
-pip install -r requirements.txt
-
-7. crear la BD
-
-8. ejecutar el programa, ingresar a la carpeta SRC
-py app.py
-
-
-
-
-
-
-
-
-
-
-
+------PUNTOS PENDIENTES DEL PROYECTO---
+1. Falta la función de editar información personal del usuario
 
 
 

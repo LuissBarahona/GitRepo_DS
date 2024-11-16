@@ -1,0 +1,27 @@
+REGISTRO DEL AVACE QUE VOY REALIZANDO
+
+1. Ingresar a xamp para ejecutar MySQL server (María DB) - FUNCIONA
+    sudo /opt/lampp/lampp start //activar xamp desde ubuntu20.04
+    sudo /opt/lampp/bin/mysql -u root -p //Ingresar a MaríaDB
+
+    \. /home/luisbarahona/Documents/CreatedByBarahona/Repositories_Code/DS_Repository/GitRepo_DS/proyecto/db/db.sql
+
+2. Correr aplicación 
+    cd src/
+    python3 app.py
+
+
+
+
+
+--------------------------------------RECURSOS ADICIONALES
+1. VISUALZIACIÓN DE LA BASE DE DATOS MySQL 
+    show tables;
+    select * from usuario;
+
+
+
+2. LINKS IMPORTANTES
+    2.1 Figma Prototio: 
+
+

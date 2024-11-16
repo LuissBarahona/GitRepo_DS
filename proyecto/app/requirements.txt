@@ -1,0 +1,7 @@
+flask
+pymysql
+requests
+
+
+bcrypt
+flask-mail

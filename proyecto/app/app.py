@@ -6,15 +6,30 @@ from dao.DAOCursos import DAOCursos
 from noticias import obtener_noticias  # Importa la función obtener_noticias
 import bcrypt
 import requests
-
 from datetime import datetime
+from flask_mail import Mail
+from flask_mail import Message
 
+
+### APP FLASK
 app = Flask(__name__)
-app.secret_key = "mys3cr3tk3y"
+
+
+####MAIL DE BIENVENIDA
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'luis.barahona@utec.edu.pe'  # Cambia por tu correo
+app.config['MAIL_PASSWORD'] = 'vioa yxon klye akwm'       # Cambia por tu contraseña
+mail = Mail(app)
+
+#### BASE DE DATOS 
 db = DAOEstudiante()
 dbA = DAOAdmin()
 dbCursos=DAOCursos()
+
 ####La función login_requerido, realiza la proteccion de las rutas###
+app.secret_key = "mys3cr3tk3y"
 def login_requerido(f):
     def wrapper(*args, **kwargs):
         # Verificar si el usuario está autenticado
@@ -80,7 +95,7 @@ def cerrar_sesion():
 def registro():
     return render_template('estudiante/registrarse.html')
 
-@app.route('/estudiante/guardar/',methods = ['POST', 'GET'])
+@app.route('/estudiante/guardar/', methods=['POST', 'GET'])
 def guardarRegistro():
     if request.method == 'POST':
         nombre = request.form.get('nombre')
@@ -89,12 +104,24 @@ def guardarRegistro():
         correo = request.form.get('correo')
         contrasena = request.form.get('contrasena')
         hashed_password = bcrypt.hashpw(contrasena.encode('utf-8'), bcrypt.gensalt())
-        if db.insert({'nombre': nombre, 'apellido': apellido, 'nombreUsuario': username, 'correo': correo, 'contrasena': hashed_password}):
 
-            #flash('Registro exitoso')
+        if db.insert({'nombre': nombre, 'apellido': apellido, 'nombreUsuario': username, 'correo': correo, 'contrasena': hashed_password}):
+            # Enviar correo electrónico de bienvenida con plantilla HTML
+            try:
+                mensaje = Message(
+                    subject="¡Bienvenido a nuestra plataforma!",
+                    sender=app.config['MAIL_USERNAME'],  # Tu correo configurado
+                    recipients=[correo]  # Correo del usuario registrado
+                )
+                mensaje.html = render_template('welcome_email.html', nombre=nombre)
+                mail.send(mensaje)
+            except Exception as e:
+                flash(f"Registro exitoso, pero ocurrió un error al enviar el correo: {str(e)}")
+
+            # Redirigir a la página de inicio de sesión
             return redirect(url_for('iniciarSesion'))
         else:
-            flash("Nombre de usuario o correco existente")
+            flash("Nombre de usuario o correo existente")
             return redirect(url_for('registro'))
 
 @app.route('/estudiante/cursos/')
@@ -180,7 +207,7 @@ def cerrar_sesionAdmin():
 def registroAdmin():
     return render_template('administrador/registrarse.html')
 
-@app.route('/administrador/guardar/',methods = ['POST', 'GET'])
+@app.route('/administrador/guardar/', methods=['POST', 'GET'])
 def guardarRegistroAdmin():
     if request.method == 'POST':
         nombre = request.form.get('nombre')
@@ -189,12 +216,24 @@ def guardarRegistroAdmin():
         correo = request.form.get('correo')
         contrasena = request.form.get('contrasena')
         hashed_password = bcrypt.hashpw(contrasena.encode('utf-8'), bcrypt.gensalt())
-        if dbA.insert({'nombre': nombre, 'apellido': apellido, 'nombreUsuario': username, 'correo': correo, 'contrasena': hashed_password}):
 
-            #flash('Registro exitoso')
+        if dbA.insert({'nombre': nombre, 'apellido': apellido, 'nombreUsuario': username, 'correo': correo, 'contrasena': hashed_password}):
+            # Enviar correo electrónico de bienvenida con plantilla HTML
+            try:
+                mensaje = Message(
+                    subject="¡Bienvenido a nuestra plataforma!",
+                    sender=app.config['MAIL_USERNAME'],  # Tu correo configurado
+                    recipients=[correo]  # Correo del usuario registrado
+                )
+                mensaje.html = render_template('welcome_email.html', nombre=nombre)
+                mail.send(mensaje)
+            except Exception as e:
+                flash(f"Registro exitoso, pero ocurrió un error al enviar el correo: {str(e)}")
+
+            # Redirigir a la página de inicio de sesión
             return redirect(url_for('iniciarSesionAdmin'))
         else:
-            flash("Nombre de usuario o correco existente")
+            flash("Nombre de usuario o correo existente")
             return redirect(url_for('registroAdmin'))
 
 @app.route('/administrador/cursos/')
@@ -249,15 +288,15 @@ def administradorCursoVenta():
 def administradorCursoUso():
     return render_template('administrador/cursosUso.html')
 
-@app.route('/administrador/cursos/cursoForm')
+@app.route('/administrador/cursos/cursoForm/')
 def adminCursoForm():
     return render_template('administrador/cursoForm.html')
 
-@app.route('/administrador/cursos/desarrolloForm')
+@app.route('/administrador/cursos/desarrolloForm/')
 def adminDesarrolloForm():
     return render_template('administrador/desarrolloForm.html')
 
-@app.route('/administrador/cursos/jobForm')
+@app.route('/administrador/cursos/jobForm/')
 def adminJobForm():
     return render_template('administrador/jobForm.html')
 
@@ -268,4 +307,4 @@ def page_not_found(error):
     return render_template('error.html')
 
 if __name__ == '__main__':
-    app.run(port=3000, host="0.0.0.0",debug=True)
+    app.run(port=3000,host="0.0.0.0",debug=True)

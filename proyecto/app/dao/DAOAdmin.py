@@ -3,7 +3,7 @@ import pymysql
 class DAOAdmin:
     def connect(self):
         return pymysql.connect(host="localhost",user="root",password="",db="db_poo" )
-
+        #cambiara localhost -> db y poner a password=root cuando se suba a la nube
     def read(self, username):
             try:
                 with self.connect() as con:

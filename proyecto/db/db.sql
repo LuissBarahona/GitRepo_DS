@@ -1,4 +1,3 @@
-drop database db_poo;
 
 create database db_poo;
 
